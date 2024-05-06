@@ -69,13 +69,7 @@ public struct DiscoverFeature {
     
     public var body: some ReducerOf<Self> {
         Scope(state: \.search, action: \.search) {
-            let search = withDependencies { container in
-                container.theMovieDatabaseClient = TMDBMocker()
-            } operation: {
-                return SearchFeature(entertainmentCategory: entertainmentCategory)
-            }
-            search
-            
+            SearchFeature(entertainmentCategory: entertainmentCategory)
         }
         
         Reduce { state, action in

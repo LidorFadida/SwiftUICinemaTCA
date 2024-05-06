@@ -43,7 +43,7 @@ public struct AppFeature {
         Scope(state: \.moviesTab, action: \.moviesTab) {
             ///'.nowPlaying' is ignored in 'DiscoverMoviesFeature'
             DiscoverFeature(entertainmentCategory: .movies(.nowPlaying))
-        }//theMovieDatabaseClient is a protocol implementing DependencyValue
+        }
         
         Scope(state: \.tvShowsTab, action: \.tvShowsTab) {
             ///'.onTheAir' is ignored in 'DiscoverMoviesFeature'
