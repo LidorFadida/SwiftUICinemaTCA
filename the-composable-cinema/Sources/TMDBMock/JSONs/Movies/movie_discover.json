@@ -1,0 +1,405 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/xOMo8BRK7PfcJv9JCnx7s5hj0PX.jpg",
+      "genre_ids": [
+        878,
+        12
+      ],
+      "id": 693134,
+      "original_language": "en",
+      "original_title": "Dune: Part Two",
+      "overview": "Follow the mythic journey of Paul Atreides as he unites with Chani and the Fremen while on a path of revenge against the conspirators who destroyed his family. Facing a choice between the love of his life and the fate of the known universe, Paul endeavors to prevent a terrible future only he can foresee.",
+      "popularity": 2461.439,
+      "poster_path": "/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
+      "release_date": "2024-02-27",
+      "title": "Dune: Part Two",
+      "video": false,
+      "vote_average": 8.292,
+      "vote_count": 3045
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/1XDDXPXGiI8id7MrUxK36ke7gkX.jpg",
+      "genre_ids": [
+        16,
+        28,
+        10751,
+        35,
+        14
+      ],
+      "id": 1011985,
+      "original_language": "en",
+      "original_title": "Kung Fu Panda 4",
+      "overview": "Po is gearing up to become the spiritual leader of his Valley of Peace, but also needs someone to take his place as Dragon Warrior. As such, he will train a new kung fu practitioner for the spot and will encounter a villain called the Chameleon who conjures villains from the past.",
+      "popularity": 1949.726,
+      "poster_path": "/kDp1vUBnMpe8ak4rjgl3cLELqjU.jpg",
+      "release_date": "2024-03-02",
+      "title": "Kung Fu Panda 4",
+      "video": false,
+      "vote_average": 7.128,
+      "vote_count": 1133
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/qrGtVFxaD8c7et0jUtaYhyTzzPg.jpg",
+      "genre_ids": [
+        28,
+        878,
+        12,
+        14
+      ],
+      "id": 823464,
+      "original_language": "en",
+      "original_title": "Godzilla x Kong: The New Empire",
+      "overview": "Following their explosive showdown, Godzilla and Kong must reunite against a colossal undiscovered threat hidden within our world, challenging their very existence – and our own.",
+      "popularity": 2002.241,
+      "poster_path": "/tMefBSflR6PGQLv7WvFPpKLZkyk.jpg",
+      "release_date": "2024-03-27",
+      "title": "Godzilla x Kong: The New Empire",
+      "video": false,
+      "vote_average": 6.679,
+      "vote_count": 668
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/7ZP8HtgOIDaBs12krXgUIygqEsy.jpg",
+      "genre_ids": [
+        878,
+        28,
+        14,
+        12
+      ],
+      "id": 601796,
+      "original_language": "ko",
+      "original_title": "외계+인 1부",
+      "overview": "Gurus in the late Goryeo dynasty try to obtain a fabled, holy sword, and humans in 2022 hunt down an alien prisoner that is locked in a human's body. The two parties cross paths when a time-traveling portal opens up.",
+      "popularity": 893.489,
+      "poster_path": "/8QVDXDiOGHRcAD4oM6MXjE0osSj.jpg",
+      "release_date": "2022-07-20",
+      "title": "Alienoid",
+      "video": false,
+      "vote_average": 6.949,
+      "vote_count": 277
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/oe7mWkvYhK4PLRNAVSvonzyUXNy.jpg",
+      "genre_ids": [
+        28,
+        53
+      ],
+      "id": 359410,
+      "original_language": "en",
+      "original_title": "Road House",
+      "overview": "Ex-UFC fighter Dalton takes a job as a bouncer at a Florida Keys roadhouse, only to discover that this paradise is not all it seems.",
+      "popularity": 810.438,
+      "poster_path": "/bXi6IQiQDHD00JFio5ZSZOeRSBh.jpg",
+      "release_date": "2024-03-08",
+      "title": "Road House",
+      "video": false,
+      "vote_average": 7.066,
+      "vote_count": 1469
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/9wJO4MBzkqgUZemLTGEsgUbYyP6.jpg",
+      "genre_ids": [
+        878,
+        9648,
+        53,
+        28
+      ],
+      "id": 720321,
+      "original_language": "en",
+      "original_title": "Breathe",
+      "overview": "Air-supply is scarce in the near future, forcing a mother and daughter to fight for survival when two strangers arrive desperate for an oxygenated haven.",
+      "popularity": 931.602,
+      "poster_path": "/wTW2t8ocWDlHns8I7vQxuqkyK58.jpg",
+      "release_date": "2024-04-04",
+      "title": "Breathe",
+      "video": false,
+      "vote_average": 5.214,
+      "vote_count": 35
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/cIztAxDn3H8JylRaJwiHHpkGe53.jpg",
+      "genre_ids": [
+        10751,
+        35,
+        16
+      ],
+      "id": 1239146,
+      "original_language": "en",
+      "original_title": "Woody Woodpecker Goes to Camp",
+      "overview": "After getting kicked out of the forest, Woody thinks he's found a forever home at Camp Woo Hoo — until an inspector threatens to shut down the camp.",
+      "popularity": 928.861,
+      "poster_path": "/8BYT4D0E0f1qFb9WfJPH4YUirL.jpg",
+      "release_date": "2024-04-12",
+      "title": "Woody Woodpecker Goes to Camp",
+      "video": false,
+      "vote_average": 7.309,
+      "vote_count": 55
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/atPlFdUrQl2U9MtUwujrrjnQHBA.jpg",
+      "genre_ids": [
+        28,
+        80,
+        18,
+        53
+      ],
+      "id": 654739,
+      "original_language": "ko",
+      "original_title": "발신제한",
+      "overview": "On his way to work, a bank manager receives an anonymous call claiming there's a bomb under his car seat, and if anyone exits the car, it will explode unless he can pay a ransom.",
+      "popularity": 659.44,
+      "poster_path": "/y2Aimt8isimtigec3e4kB2G9FMR.jpg",
+      "release_date": "2021-06-23",
+      "title": "Hard Hit",
+      "video": false,
+      "vote_average": 7.656,
+      "vote_count": 167
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/qekky2LbtT1wtbD5MDgQvjfZQ24.jpg",
+      "genre_ids": [
+        28,
+        53
+      ],
+      "id": 984324,
+      "original_language": "fr",
+      "original_title": "Le salaire de la peur",
+      "overview": "When an explosion at an oil well threatens hundreds of lives, a crack team is called upon to make a deadly desert crossing with nitroglycerine in tow.",
+      "popularity": 652.799,
+      "poster_path": "/jFK2ZLQUzo9pea0jfMCHDfvWsx7.jpg",
+      "release_date": "2024-03-28",
+      "title": "The Wages of Fear",
+      "video": false,
+      "vote_average": 5.744,
+      "vote_count": 168
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/pwGmXVKUgKN13psUjlhC9zBcq1o.jpg",
+      "genre_ids": [
+        28,
+        14
+      ],
+      "id": 634492,
+      "original_language": "en",
+      "original_title": "Madame Web",
+      "overview": "Forced to confront revelations about her past, paramedic Cassandra Webb forges a relationship with three young women destined for powerful futures...if they can all survive a deadly present.",
+      "popularity": 628.474,
+      "poster_path": "/rULWuutDcN5NvtiZi4FRPzRYWSh.jpg",
+      "release_date": "2024-02-14",
+      "title": "Madame Web",
+      "video": false,
+      "vote_average": 5.647,
+      "vote_count": 1097
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/2KGxQFV9Wp1MshPBf8BuqWUgVAz.jpg",
+      "genre_ids": [
+        16,
+        28,
+        12,
+        35,
+        10751
+      ],
+      "id": 940551,
+      "original_language": "en",
+      "original_title": "Migration",
+      "overview": "After a migrating duck family alights on their pond with thrilling tales of far-flung places, the Mallard family embarks on a family road trip, from New England, to New York City, to tropical Jamaica.",
+      "popularity": 700.111,
+      "poster_path": "/ldfCF9RhR40mppkzmftxapaHeTo.jpg",
+      "release_date": "2023-12-06",
+      "title": "Migration",
+      "video": false,
+      "vote_average": 7.533,
+      "vote_count": 1190
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/9c0lHTXRqDBxeOToVzRu0GArSne.jpg",
+      "genre_ids": [
+        878,
+        28
+      ],
+      "id": 935271,
+      "original_language": "en",
+      "original_title": "After the Pandemic",
+      "overview": "Set in a post-apocalyptic world where a global airborne pandemic has wiped out 90% of the Earth's population and only the young and immune have endured as scavengers. For Ellie and Quinn, the daily challenges to stay alive are compounded when they become hunted by the merciless Stalkers.",
+      "popularity": 549.701,
+      "poster_path": "/p1LbrdJ53dGfEhRopG71akfzOVu.jpg",
+      "release_date": "2022-03-01",
+      "title": "After the Pandemic",
+      "video": false,
+      "vote_average": 4.858,
+      "vote_count": 53
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/dcnSWFCtk4b2aIzkhq6IDbzoIf1.jpg",
+      "genre_ids": [
+        28,
+        35
+      ],
+      "id": 942047,
+      "original_language": "en",
+      "original_title": "Outsource",
+      "overview": "A police chief hires an old friend, who is an international spy, to help him search for a wanted suspect in the Philippines. When the chief dies, all evidence points towards the spy, and he must go to extremes to defend himself.",
+      "popularity": 579.992,
+      "poster_path": "/zIAF0UXtCJTJOYNYWiBfyifaaOi.jpg",
+      "release_date": "2022-01-18",
+      "title": "Outsource",
+      "video": false,
+      "vote_average": 3.5,
+      "vote_count": 2
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/2C3CdVzINUm5Cm1lrbT2uiRstwX.jpg",
+      "genre_ids": [
+        28,
+        14,
+        10752
+      ],
+      "id": 856289,
+      "original_language": "zh",
+      "original_title": "封神第一部：朝歌风云",
+      "overview": "Based on the most well-known classical fantasy novel of China, Fengshenyanyi, the trilogy is a magnificent eastern high fantasy epic that recreates the prolonged mythical wars between humans, immortals and monsters, which happened more than three thousand years ago.",
+      "popularity": 497.869,
+      "poster_path": "/ccJpK0rqzhQeP7Mrs2uKqObFY4L.jpg",
+      "release_date": "2023-07-20",
+      "title": "Creation of the Gods I: Kingdom of Storms",
+      "video": false,
+      "vote_average": 6.8,
+      "vote_count": 201
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/lzWHmYdfeFiMIY4JaMmtR7GEli3.jpg",
+      "genre_ids": [
+        878,
+        12
+      ],
+      "id": 438631,
+      "original_language": "en",
+      "original_title": "Dune",
+      "overview": "Paul Atreides, a brilliant and gifted young man born into a great destiny beyond his understanding, must travel to the most dangerous planet in the universe to ensure the future of his family and his people. As malevolent forces explode into conflict over the planet's exclusive supply of the most precious resource in existence-a commodity capable of unlocking humanity's greatest potential-only those who can conquer their fear will survive.",
+      "popularity": 537.356,
+      "poster_path": "/d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
+      "release_date": "2021-09-15",
+      "title": "Dune",
+      "video": false,
+      "vote_average": 7.789,
+      "vote_count": 11306
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/uv2twFGMk2qBdyJBJAVcrpRtSa9.jpg",
+      "genre_ids": [
+        28,
+        10752,
+        878
+      ],
+      "id": 929590,
+      "original_language": "en",
+      "original_title": "Civil War",
+      "overview": "In the near future, a group of war journalists attempt to survive while reporting the truth as the United States stands on the brink of civil war.",
+      "popularity": 670.912,
+      "poster_path": "/sh7Rg8Er3tFcN9BpKIPOMvALgZd.jpg",
+      "release_date": "2024-04-10",
+      "title": "Civil War",
+      "video": false,
+      "vote_average": 7.546,
+      "vote_count": 163
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/5cCfqeUH2f5Gnu7Lh9xepY9TB6x.jpg",
+      "genre_ids": [
+        14,
+        12,
+        35
+      ],
+      "id": 967847,
+      "original_language": "en",
+      "original_title": "Ghostbusters: Frozen Empire",
+      "overview": "The Spengler family returns to where it all started – the iconic New York City firehouse – to team up with the original Ghostbusters, who've developed a top-secret research lab to take busting ghosts to the next level. But when the discovery of an ancient artifact unleashes an evil force, Ghostbusters new and old must join forces to protect their home and save the world from a second Ice Age.",
+      "popularity": 502.968,
+      "poster_path": "/6faYaQyiBPhqAizldJKq21mIVaE.jpg",
+      "release_date": "2024-03-20",
+      "title": "Ghostbusters: Frozen Empire",
+      "video": false,
+      "vote_average": 6.513,
+      "vote_count": 261
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/wxYBMcxFIJai9AaZr6XAOKZTfxY.jpg",
+      "genre_ids": [
+        35
+      ],
+      "id": 1229913,
+      "original_language": "es",
+      "original_title": "室友",
+      "overview": "Vivi is a young writer who is forced to find a roommate to pay the mortgage on her apartment. What she does not suspect is that Roy, the supposed perfect partner she found, has a peculiar lifestyle: he never pays rent.",
+      "popularity": 488.147,
+      "poster_path": "/zaRzz2BxjxIVb7ja0gSedj1Hn1E.jpg",
+      "release_date": "2024-01-18",
+      "title": "The Roommate",
+      "video": false,
+      "vote_average": 7.089,
+      "vote_count": 28
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/e3gVl1gnxEFKLTF6pn6KRqUPi9K.jpg",
+      "genre_ids": [
+        10749,
+        18
+      ],
+      "id": 1127166,
+      "original_language": "it",
+      "original_title": "Fabbricante di lacrime",
+      "overview": "Adopted together after a tough childhood in an orphanage, Nica and Rigel realize that unexpected but irresistible feelings pull them together.",
+      "popularity": 542.713,
+      "poster_path": "/uoBHsxSgfc3PQsSn98RfnbePHOy.jpg",
+      "release_date": "2024-04-03",
+      "title": "The Tearsmith",
+      "video": false,
+      "vote_average": 6.646,
+      "vote_count": 383
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/wUp0bUXaveR40ikBhDgWwNTijuD.jpg",
+      "genre_ids": [
+        28,
+        9648,
+        53
+      ],
+      "id": 1181548,
+      "original_language": "en",
+      "original_title": "Heart of the Hunter",
+      "overview": "A retired assassin is pulled back into action when his friend uncovers a dangerous conspiracy at the heart of the South African government.",
+      "popularity": 436.201,
+      "poster_path": "/n726fdyL1dGwt15bY7Nj3XOXc4Q.jpg",
+      "release_date": "2024-03-28",
+      "title": "Heart of the Hunter",
+      "video": false,
+      "vote_average": 5.866,
+      "vote_count": 67
+    }
+  ],
+  "total_pages": 43653,
+  "total_results": 873043
+}
