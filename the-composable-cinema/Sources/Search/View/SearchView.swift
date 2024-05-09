@@ -38,7 +38,8 @@ public struct SearchView: View {
         .toolbar {
             if store.isSearchActive {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Image(systemName: "xmark.circle.fill")
+                    Image(systemName: "xmark")
+                        .symbolVariant(.circle.fill)
                         .foregroundStyle(.primary)
                         .frame(width: 36.0, height: 36.0)
                         .onTapGesture {
@@ -57,8 +58,9 @@ public struct SearchView: View {
             Button {
                 send(.toggleIsSearchActive,animation: .bouncy)
             } label: {
-                Image(systemName: "magnifyingglass.circle.fill")
+                Image(systemName: "magnifyingglass")
                     .resizable()
+                    .symbolVariant(.circle.fill)
                     .scaledToFit()
                     .frame(width: 36.0, height: 36.0)
             }
