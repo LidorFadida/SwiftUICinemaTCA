@@ -36,7 +36,8 @@ public struct StarRatingView: View {
             GeometryReader { reader in
                 HStack(spacing: 0.0) {
                     ForEach(0..<maxRating, id: \.self) { _ in ///Draws maxRating times filled star
-                        Image(systemName: "star.fill")
+                        Image(systemName: "star")
+                            .symbolVariant(.fill)
                             .symbolEffect(.scale, options: .nonRepeating)
                             .foregroundColor(.yellow)
                             .aspectRatio(contentMode: .fit)
