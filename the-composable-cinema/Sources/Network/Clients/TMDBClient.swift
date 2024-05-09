@@ -37,35 +37,29 @@ public struct TMDBClient: TMDBClientProtocol {
         }
         return response
     }
-    
-    public func fetchMovies() async throws -> TMDBDiscoverResponse {
+ 
+    public func fetchDiscover(categories: [EntertainmentCategory]) async throws -> TMDBDiscoverResponse {
         let parameters = TMDBCoreProperties.Parameters(page: 1)
-        let nowPlayingCategory: EntertainmentCategory = .movies(.nowPlaying)
-        let popularCategory: EntertainmentCategory = .movies(.popular)
-        let topRatedCategory: EntertainmentCategory = .movies(.topRated)
-        
-        async let nowPlayingResult = try fetchTMDBPage(entertainmentCategory: nowPlayingCategory, parameters: parameters)
-        async let popularResult = try fetchTMDBPage(entertainmentCategory: popularCategory, parameters: parameters)
-        async let topRatedResult = try fetchTMDBPage(entertainmentCategory: topRatedCategory, parameters: parameters)
-        
-        let items = try await [nowPlayingResult, popularResult, topRatedResult] //task group
-        let fetched = TMDBDiscoverResponse(items: items)
-        return fetched
-    }
-    
-    public func fetchTVShows() async throws -> TMDBDiscoverResponse {
-        let parameters = TMDBCoreProperties.Parameters(page: 1)
-        let onTheAirCategory: EntertainmentCategory = .tvShows(.onTheAir)
-        let popularCategory: EntertainmentCategory = .tvShows(.popular)
-        let topRatedCategory: EntertainmentCategory = .tvShows(.topRated)
-        
-        async let onAirResult = try fetchTMDBPage(entertainmentCategory: onTheAirCategory, parameters: parameters)
-        async let popularResult = try fetchTMDBPage(entertainmentCategory: popularCategory, parameters: parameters)
-        async let topRatedResult = try fetchTMDBPage(entertainmentCategory: topRatedCategory, parameters: parameters)
-        
-        let items = try await [onAirResult, popularResult, topRatedResult]
-        let fetched = TMDBDiscoverResponse(items: items)
-        return fetched
+        return try await withThrowingTaskGroup(of: (Int, TMDBPageItemResponse).self) { group in
+            for (index, category) in categories.enumerated() {
+                group.addTask {
+                    do {
+                        return (index, try await fetchTMDBPage(entertainmentCategory: category, parameters: parameters))
+                    } catch {
+                        assertionFailure("Error fetching category \(category): \(error)")
+                        throw error
+                    }
+                }
+            }
+            
+            let responses: [TMDBPageItemResponse] = try await group
+                .reduce(into: [TMDBPageItemResponse?](repeating: nil, count: categories.count)) { partialResult, enumeratedResponse in
+                    return partialResult[enumeratedResponse.0] = enumeratedResponse.1
+                }
+                .compactMap { $0 }
+
+            return TMDBDiscoverResponse(items: responses)
+        }
     }
     
     public func fetchTMDBPage(entertainmentCategory: EntertainmentCategory, parameters: TMDBCoreProperties.Parameters) async throws -> TMDBPageItemResponse {

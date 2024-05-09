@@ -52,6 +52,7 @@ public struct TMDBMocker {
 }
 
 extension TMDBMocker: TMDBClientProtocol {
+    
     public func fetchDetails(id: Int, entertainmentCategory: EntertainmentCategory) async throws -> TMDBItemDetailsResponseProtocol {
         switch entertainmentCategory {
         case .movies(_):
@@ -61,18 +62,14 @@ extension TMDBMocker: TMDBClientProtocol {
         }
     }
     
-    public func fetchMovies() async throws -> TMDBDiscoverResponse {
-        let nowPlayingMovies = TMDBPageItemResponse(entertainmentCategory: .movies(.nowPlaying), response: nowPlayingMovies)
-        let popularMovies = TMDBPageItemResponse(entertainmentCategory: .movies(.popular), response: popularMovies)
-        let topRatedMovies = TMDBPageItemResponse(entertainmentCategory: .movies(.topRated), response: topRatedMovies)
-        return TMDBDiscoverResponse(items: [nowPlayingMovies, popularMovies, topRatedMovies])
-    }
-    
-    public func fetchTVShows() async throws -> TMDBDiscoverResponse {
-        let tvShowsPopular = TMDBPageItemResponse(entertainmentCategory: .movies(.popular), response: tvShowsPopular)
-        let tvShowsTopRated = TMDBPageItemResponse(entertainmentCategory: .movies(.topRated), response: tvShowsTopRated)
-        let tvShowsOnAir = TMDBPageItemResponse(entertainmentCategory: .movies(.nowPlaying), response: tvShowsOnAir)
-        return TMDBDiscoverResponse(items: [tvShowsPopular, tvShowsTopRated, tvShowsOnAir])
+    public func fetchDiscover(categories: [EntertainmentCategory]) async throws -> TMDBDiscoverResponse {
+        guard let dummy = categories.first else { throw NSError(domain: "tmdbMock", code: -1) }
+        switch dummy {
+        case .movies(_):
+            return try await fetchMovies()
+        case .tvShows(_):
+            return try await fetchTVShows()
+        }
     }
     
     public func fetchTMDBPage(entertainmentCategory: EntertainmentCategory, parameters: TMDBCoreProperties.Parameters) async throws -> TMDBPageItemResponse {
@@ -85,6 +82,22 @@ extension TMDBMocker: TMDBClientProtocol {
             return nowPlayingMovies
         }
         
+    }
+}
+
+extension TMDBMocker {
+    private func fetchMovies() async throws -> TMDBDiscoverResponse {
+        let nowPlayingMovies = TMDBPageItemResponse(entertainmentCategory: .movies(.nowPlaying), response: nowPlayingMovies)
+        let popularMovies = TMDBPageItemResponse(entertainmentCategory: .movies(.popular), response: popularMovies)
+        let topRatedMovies = TMDBPageItemResponse(entertainmentCategory: .movies(.topRated), response: topRatedMovies)
+        return TMDBDiscoverResponse(items: [nowPlayingMovies, popularMovies, topRatedMovies])
+    }
+    
+    private func fetchTVShows() async throws -> TMDBDiscoverResponse {
+        let tvShowsPopular = TMDBPageItemResponse(entertainmentCategory: .movies(.popular), response: tvShowsPopular)
+        let tvShowsTopRated = TMDBPageItemResponse(entertainmentCategory: .movies(.topRated), response: tvShowsTopRated)
+        let tvShowsOnAir = TMDBPageItemResponse(entertainmentCategory: .movies(.nowPlaying), response: tvShowsOnAir)
+        return TMDBDiscoverResponse(items: [tvShowsPopular, tvShowsTopRated, tvShowsOnAir])
     }
 }
 
