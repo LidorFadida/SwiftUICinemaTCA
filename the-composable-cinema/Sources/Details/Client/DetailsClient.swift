@@ -24,12 +24,9 @@ extension DetailsClient: DependencyKey {
     }
     
     static let testValue = Self { itemIdentifier, entertainmentCategory in
-        let response = try await TMDBMocker().fetchDetails(id: itemIdentifier, entertainmentCategory: entertainmentCategory)
-        let details = withDependencies { container in
-            container.uuid = .incrementing
-        } operation: {
-             DetailsEntity(itemDetailsResponse: response)
-        }
+        @Dependency(\.theMovieDatabaseClient) var tmdbClient
+        let response = try await tmdbClient.fetchDetails(id: itemIdentifier, entertainmentCategory: entertainmentCategory)
+        let details = DetailsEntity(itemDetailsResponse: response)
         return details
     }
 }

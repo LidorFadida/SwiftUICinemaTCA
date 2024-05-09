@@ -10,7 +10,7 @@ import AppFeature
 
 @main
 struct SwiftUICinemaTCAApp: App {
-    let appConfigurator = AppConfigurator(apiKey: nil)
+    let appConfigurator = AppConfigurator(/*apiKey: your api key */)
     
     var body: some Scene {
         WindowGroup {
