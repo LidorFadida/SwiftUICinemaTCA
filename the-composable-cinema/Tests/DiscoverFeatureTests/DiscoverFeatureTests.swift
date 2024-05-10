@@ -22,7 +22,7 @@ final class DiscoverFeatureTests: XCTestCase {
         let discoverResponse = await withDependencies { container in
             container.uuid = .incrementing
         } operation: {
-            try! await mocker.fetchMovies().items.compactMap { element in
+            try! await mocker.fetchDiscover(categories: [.movies(.nowPlaying)]).items.compactMap { element in
                 return PaginationEntity(entertainmentCategory: element.entertainmentCategory, response: element.response)
             }
         }
@@ -46,7 +46,7 @@ final class DiscoverFeatureTests: XCTestCase {
         let discoverResponse = await withDependencies { container in
             container.uuid = .incrementing
         } operation: {
-            try! await mocker.fetchTVShows().items.compactMap { element in
+            try! await mocker.fetchDiscover(categories: [.tvShows(.onTheAir)]).items.compactMap { element in
                 return PaginationEntity(entertainmentCategory: element.entertainmentCategory, response: element.response)
             }
         }

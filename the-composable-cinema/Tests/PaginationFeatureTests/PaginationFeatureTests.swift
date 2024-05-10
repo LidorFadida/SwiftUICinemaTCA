@@ -12,18 +12,45 @@ import ComposableArchitecture
 
 final class PaginationFeatureTests: XCTestCase {
     
-    fileprivate struct Entity: Equatable, Identifiable {
+    private struct Entity: Equatable, Identifiable {
         let id: String
         let name: String
+        
+        init(id: String, name: String) {
+            self.id = id
+            self.name = name
+        }
+        
+        init(name: String) {
+            @Dependency(\.uuid) var uuid
+            self.id  = uuid().uuidString
+            self.name = name
+        }
     }
+    
+    private lazy var entitiesFirstPage: [Entity] = {
+        return withDependencies { container in
+            container.uuid = .incrementing
+        } operation: {
+            return [.init(name: "Lidor"),
+                    .init(name: "Maayan"),
+                    .init(name: "Niv")]
+        }
+    }()
+    
+    private lazy var entitiesSecondPage: [Entity] = {
+        return withDependencies { container in
+            container.uuid = .incrementing
+        } operation: {
+            return [.init(name: "Yaakov"),
+                    .init(name: "Ilana"),
+                    .init(name: "Yossi")]
+        }
+    }()
     
     
     @MainActor
     func testSinglePagePaginationFeature() async {
-        let uuid = UUIDGenerator.incrementing
-        var uuidString: String {
-            return uuid().uuidString
-        }
         let store = TestStore(initialState: PaginationFeature<Entity>.State()) {
             return PaginationFeature<Entity>()
         }
@@ -32,20 +59,15 @@ final class PaginationFeatureTests: XCTestCase {
             state.isLoading = true
         }
         
-        let entities: [Entity] = [.init(id: uuidString,
-                                        name: "Lidor"),
-                                  .init(id: uuidString,
-                                        name: "Maayan"),
-                                  .init(id: uuidString,
-                                        name: "Niv")]
+        let entitiesFirstPage = entitiesFirstPage
         let page = 1
         let totalPages = 1
         
-        await store.send(.receivedPage(page, totalPages, entities)) { state in
+        await store.send(.receivedPage(page, totalPages, entitiesFirstPage)) { state in
             state.isLoading = false
             state.page = page
             state.totalPages = totalPages
-            state.items = entities
+            state.items = entitiesFirstPage
         }
         
         ///receivedPage(:::) is already mutating isLoading to false before sending this action
@@ -70,26 +92,16 @@ final class PaginationFeatureTests: XCTestCase {
     
     @MainActor
     func testMultiplePagesPaginationFeature() async {
-        let uuid = UUIDGenerator.incrementing
-        var uuidString: String {
-            return uuid().uuidString
-        }
         let store = TestStore(initialState: PaginationFeature<Entity>.State()) {
             return PaginationFeature<Entity>()
-        } withDependencies: { container in
-            container.uuid = .incrementing
         }
         
         await store.send(.view(.fetchInitialPage)) { state in
             state.isLoading = true
         }
         
-        let entitiesFirstPage: [Entity] = [.init(id: uuidString,
-                                                 name: "Lidor"),
-                                           .init(id: uuidString,
-                                                 name: "Maayan"),
-                                           .init(id: uuidString,
-                                                 name: "Niv")]
+        let entitiesFirstPage = entitiesFirstPage
+        let entitiesSecondPage = entitiesSecondPage
         let page = 1
         let totalPages = 2
         
@@ -105,13 +117,7 @@ final class PaginationFeatureTests: XCTestCase {
         }
         
         await store.receive(\.fetchNextPage)
-        
-        let entitiesSecondPage: [Entity] = [.init(id: uuidString,
-                                                  name: "Yaakov"),
-                                            .init(id: uuidString,
-                                                  name: "Ilana"),
-                                            .init(id: uuidString,
-                                                  name: "Yossi")]
+
         let secondPage = 2
         let items = entitiesFirstPage + entitiesSecondPage
         
@@ -131,6 +137,5 @@ final class PaginationFeatureTests: XCTestCase {
             state.items = []
         }
     }
-    
     
 }
