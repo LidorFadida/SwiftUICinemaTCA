@@ -33,6 +33,24 @@ public struct PaginationEntity: Equatable, Identifiable {
         self.totalPages = totalPages
         self.entertainmentCategory = entertainmentCategory
         self.items = items
+    } 
+    
+    public init(
+        title: String,
+        page: Int,
+        totalPages: Int,
+        entertainmentCategory: EntertainmentCategory,
+        items: [DiscoverItemEntity]
+    ) {
+        @Dependency(\.uuid) var uuid
+        self.init(
+            id: uuid().uuidString,
+            title: title,
+            page: page,
+            totalPages: totalPages,
+            entertainmentCategory: entertainmentCategory,
+            items: items
+        )
     }
     
     public init(entertainmentCategory: EntertainmentCategory, response: any TMDBPageResponseProtocol) {

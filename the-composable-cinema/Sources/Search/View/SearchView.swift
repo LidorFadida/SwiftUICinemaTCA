@@ -85,8 +85,8 @@ public struct SearchView: View {
                     .containerRelativeFrame(.horizontal) { value, axis in
                         return value * 0.8
                     }
-            } else if let searchMessage = store.searchErrorMessage {
-                Text(searchMessage)
+            } else if store.showNoResultForQueryMessage {
+                Text("We couldn't find any results for\n'\(store.searchQuery)'\n")
                     .multilineTextAlignment(.center)
                     .font(.from(uiFont: .changaOne(24.0)))
                     .foregroundStyle(.primary)
