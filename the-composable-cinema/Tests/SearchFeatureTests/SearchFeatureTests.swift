@@ -15,35 +15,43 @@ import ComposableArchitecture
 @MainActor
 final class SearchFeatureTests: XCTestCase {
     
+    
+    private var discoverEntityFirstItem: DiscoverItemEntity {
+        return withDependencies { container in
+            container.uuid = .incrementing
+        } operation: {
+            DiscoverItemEntity(itemIdentifier: 1,
+                               title: "Lidor",
+                               rating: 0.0,
+                               releaseDate: "",
+                               backdropPath: nil,
+                               posterPath: nil)
+        }
+    }
+
+    private var discoverEntitySecondItem: DiscoverItemEntity {
+        return withDependencies { container in
+            container.uuid = .incrementing
+        } operation: {
+            DiscoverItemEntity(itemIdentifier: 2,
+                               title: "Lidor",
+                               rating: 0.0,
+                               releaseDate: "",
+                               backdropPath: nil,
+                               posterPath: nil)
+        }
+    }
+
     func testMoviesSearchFeature() async {
-        let uuid = UUIDGenerator.incrementing
-        var uuidString: String {
-            return uuid().uuidString
-        }
         let clock = TestClock()
-        let discoverEntity = DiscoverItemEntity(id:uuidString,
-                                                itemIdentifier: 1,
-                                                title: "Lidor",
-                                                rating: 0.0,
-                                                releaseDate: "",
-                                                backdropPath: nil,
-                                                posterPath: nil)
-        let searchClient = SearchClient { searchQuery, page, entertainmentCategory in
-            return .init(id: uuidString,
-                         title: "Test",
-                         page: 1,
-                         totalPages: 1,
-                         entertainmentCategory: .movies(.search),
-                         items: [discoverEntity])
-        }
-        
-        
+        let discoverEntityFirstItem = discoverEntityFirstItem
         let containerEntertainment = EntertainmentCategory.movies(.nowPlaying)
+        
         let store = TestStore(initialState: SearchFeature.State(pagination: PaginationFeature<DiscoverItemEntity>.State())) {
             return SearchFeature(entertainmentCategory: containerEntertainment)
         } withDependencies: { container in
+            container.uuid = .incrementing
             container.continuousClock = clock
-            container.searchClient = searchClient
         }
         await store.send(.view(.toggleIsSearchActive)) { state in
             state.isSearchActive = true
@@ -52,7 +60,6 @@ final class SearchFeatureTests: XCTestCase {
         let query = "Lidor Fadida"
         
         await store.send(.searchQueryChanged(query)) { state in
-            state.searchErrorMessage = nil
             state.searchQuery = query
         }
         
@@ -63,27 +70,25 @@ final class SearchFeatureTests: XCTestCase {
         await store.receive(\.searchQueryChangeDebounced)
         
         await store.receive(\.pageResponse) { state in
-            state.pagination.totalPages = 1
-            state.pagination.items = [discoverEntity]
+            state.pagination.totalPages = 2
+            state.pagination.items = [discoverEntityFirstItem]
         }
-        
-        await store.receive(\.pagination)
     }
     
     
     func testSearchNoResults() async {
-        let uuid = UUIDGenerator.incrementing
-        var uuidString: String {
-            return uuid().uuidString
-        }
         let clock = TestClock()
+        
         let searchClient = SearchClient { searchQuery, page, entertainmentCategory in
-            return .init(id: uuidString,
-                         title: "Test",
-                         page: 1,
-                         totalPages: 1,
-                         entertainmentCategory: .movies(.search),
-                         items: [])
+            return withDependencies { container in
+                container.uuid = .incrementing
+            } operation: {
+                PaginationEntity(title: "Test",
+                                 page: 1,
+                                 totalPages: 1,
+                                 entertainmentCategory: .movies(.search),
+                                 items: [])
+            }
         }
         
         
@@ -101,7 +106,6 @@ final class SearchFeatureTests: XCTestCase {
         let query = "Lidor Fadida"
         
         await store.send(.searchQueryChanged(query)) { state in
-            state.searchErrorMessage = nil
             state.searchQuery = query
         }
         
@@ -114,43 +118,44 @@ final class SearchFeatureTests: XCTestCase {
         await store.receive(\.pageResponse) { state in
             state.pagination.totalPages = 1
             state.pagination.items = []
-            state.searchErrorMessage = "We couldn't find any results for\n'\(query)'\n" //inject
+            state.showNoResultForQueryMessage = true
         }
         
         await store.receive(\.pagination)
     }
+    
     @MainActor
     func testSearchPaging() async {
-        let uuid = UUIDGenerator.incrementing
-        var uuidString: String {
-            return uuid().uuidString
-        }
+        
         let clock = TestClock()
-        let discoverEntityFirstItem = DiscoverItemEntity(id: uuidString,
+        let containerEntertainment = EntertainmentCategory.movies(.nowPlaying)
+        let uuid = UUIDGenerator.constant(UUID())().uuidString
+        let discoverEntityFirstItem = DiscoverItemEntity(id: uuid,
                                                          itemIdentifier: 1,
                                                          title: "Lidor",
                                                          rating: 0.0,
                                                          releaseDate: "",
                                                          backdropPath: nil,
                                                          posterPath: nil)
-        let discoverEntitySecondItem = DiscoverItemEntity(id: uuidString,
+        let discoverEntitySecondItem = DiscoverItemEntity(id: uuid,
                                                           itemIdentifier: 1,
                                                           title: "Lidor",
                                                           rating: 0.0,
                                                           releaseDate: "",
                                                           backdropPath: nil,
                                                           posterPath: nil)
+        
         let searchClient = SearchClient { searchQuery, page, entertainmentCategory in
             switch page {
             case 1:
-                return .init(id: uuidString,
+                return .init(id: uuid,
                              title: "Test",
                              page: 1,
                              totalPages: 2,
                              entertainmentCategory: .movies(.search),
                              items: [discoverEntityFirstItem])
             case 2:
-                return .init(id: uuidString,
+                return .init(id: uuid,
                              title: "Test",
                              page: 2,
                              totalPages: 2,
@@ -158,11 +163,8 @@ final class SearchFeatureTests: XCTestCase {
                              items: [discoverEntitySecondItem])
             default: fatalError()
             }
-            
         }
         
-        
-        let containerEntertainment = EntertainmentCategory.movies(.nowPlaying)
         let store = TestStore(initialState: SearchFeature.State(pagination: PaginationFeature<DiscoverItemEntity>.State())) {
             return SearchFeature(entertainmentCategory: containerEntertainment)
         } withDependencies: { container in
@@ -176,7 +178,6 @@ final class SearchFeatureTests: XCTestCase {
         let query = "Lidor Fadida"
         
         await store.send(.searchQueryChanged(query)) { state in
-            state.searchErrorMessage = nil
             state.searchQuery = query
         }
         
@@ -195,13 +196,16 @@ final class SearchFeatureTests: XCTestCase {
             state.pagination.isLoading = true
         }
         await store.receive(\.pagination)
-        await store.receive(\.pageResponse) { state in
+        
+        
+        await store.receive(\.pageResponse) {  state in
             state.pagination.page = 2
             state.pagination.items = [discoverEntityFirstItem, discoverEntitySecondItem]
             state.pagination.isLoading = false
         }
         await store.receive(\.pagination)
     }
+            
 }
 
 
