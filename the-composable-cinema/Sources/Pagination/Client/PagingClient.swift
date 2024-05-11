@@ -28,7 +28,8 @@ extension PaginationClient: DependencyKey {
     }
     
     public static var testValue = Self { entertainmentCategory, parameters in
-        let response = try await TMDBMocker().fetchTMDBPage(entertainmentCategory: entertainmentCategory, parameters: parameters)
+        @Dependency(\.theMovieDatabaseClient) var tmdbClient
+        let response = try await tmdbClient.fetchTMDBPage(entertainmentCategory: entertainmentCategory, parameters: parameters)
         return PaginationEntity(entertainmentCategory: response.entertainmentCategory, response: response.response)
     }
 }

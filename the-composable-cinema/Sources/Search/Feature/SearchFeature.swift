@@ -27,20 +27,20 @@ public struct SearchFeature {
         public var debounceInterval: Duration
         public var isSearchActive = false
         public var searchQuery: String
-        public var searchErrorMessage: String?
+        public var showNoResultForQueryMessage: Bool
         public var pagination: PaginationFeature<DiscoverItemEntity>.State
         
         public init(
             debounceInterval: Duration = .milliseconds(400.0),
             isSearchActive: Bool = false,
             searchQuery: String = "",
-            searchErrorMessage: String? = nil,
+            showNoResultForQueryMessage: Bool = false,
             pagination: PaginationFeature<DiscoverItemEntity>.State
         ) {
             self.debounceInterval = debounceInterval
             self.isSearchActive = isSearchActive
             self.searchQuery = searchQuery
-            self.searchErrorMessage = searchErrorMessage
+            self.showNoResultForQueryMessage = showNoResultForQueryMessage
             self.pagination = pagination
         }
     }
@@ -101,7 +101,7 @@ public struct SearchFeature {
     }
     
     private func searchQueryChanged(state: inout State, query: String) -> Effect<Action> {
-        state.searchErrorMessage = nil
+        state.showNoResultForQueryMessage = false
         state.searchQuery = query
         return .cancel(id: CancelID.searchQuery)
             .concatenate(
@@ -113,7 +113,7 @@ public struct SearchFeature {
                     do {
                         try await clock.sleep(for: state.debounceInterval)
                         await send(.searchQueryChangeDebounced)
-                    } catch { }
+                    } catch { assertionFailure(error.localizedDescription) }
                 }
             )
     }
@@ -149,7 +149,7 @@ public struct SearchFeature {
     
     private func pageResponse(state: inout State, paginationEntity: PaginationEntity) -> Effect<Action> {
         if paginationEntity.items.isEmpty {
-            state.searchErrorMessage = "We couldn't find any results for\n'\(state.searchQuery)'\n"
+            state.showNoResultForQueryMessage = true
         }
         return PaginationFeature<DiscoverItemEntity>()
             .body

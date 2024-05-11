@@ -27,7 +27,6 @@ let package = Package(
         
     ],
     dependencies: [
-        ///Alamofire
         .package(url: "https://github.com/Alamofire/Alamofire.git", exact: "5.9.0"),
         .package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "1.9.3"),
         .package(url: "https://github.com/SDWebImage/SDWebImageSwiftUI.git", exact: "3.0.4")

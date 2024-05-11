@@ -69,13 +69,7 @@ public struct DiscoverFeature {
     
     public var body: some ReducerOf<Self> {
         Scope(state: \.search, action: \.search) {
-            let search = withDependencies { container in
-                container.theMovieDatabaseClient = TMDBMocker()
-            } operation: {
-                return SearchFeature(entertainmentCategory: entertainmentCategory)
-            }
-            search
-            
+            SearchFeature(entertainmentCategory: entertainmentCategory)
         }
         
         Reduce { state, action in
@@ -118,7 +112,7 @@ public struct DiscoverFeature {
     }
     
     private func performInitialFetchIfNeeded(state: inout State) -> Effect<Action> {
-        guard state.sections.isEmpty else { return .none } ///prevent API amusement
+        guard state.sections.isEmpty else { return .none }
         let entertainmentCategory: EntertainmentCategory = self.entertainmentCategory.isMovieCategory ? .movies(.trending) : .tvShows(.trending)
         state.trending = CategoryPaginationFeature.State(entertainmentCategory: entertainmentCategory)
         return .run { send in

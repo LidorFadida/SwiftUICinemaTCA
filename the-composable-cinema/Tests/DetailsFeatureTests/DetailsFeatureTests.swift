@@ -18,6 +18,7 @@ final class DetailsFeatureTests: XCTestCase {
     
     func testMovieDetailsFeature() async {
         let item = try! await mocker.fetchDetails(id: 1, entertainmentCategory: .movies(.details))
+        
         let itemDetails = withDependencies { container in
             container.uuid = .incrementing
         } operation: {
@@ -26,12 +27,16 @@ final class DetailsFeatureTests: XCTestCase {
  
         let store = TestStore(initialState: DetailsFeature.State(itemIdentifier: 1, entertainmentCategory: .movies(.details))) {
             DetailsFeature()
+        } withDependencies: { container in
+            container.uuid = .incrementing
         }
         
         await store.send(.view(.fetchItemDetails))
         await store.receive(\.itemDetailsResponse) { state in
             state.itemDetails = itemDetails
         }
+        
+        await store.send(.view(.similarItemTapped(-1)))
     }
     
 }

@@ -38,7 +38,8 @@ public struct SearchView: View {
         .toolbar {
             if store.isSearchActive {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Image(systemName: "xmark.circle.fill")
+                    Image(systemName: "xmark")
+                        .symbolVariant(.circle.fill)
                         .foregroundStyle(.primary)
                         .frame(width: 36.0, height: 36.0)
                         .onTapGesture {
@@ -57,8 +58,9 @@ public struct SearchView: View {
             Button {
                 send(.toggleIsSearchActive,animation: .bouncy)
             } label: {
-                Image(systemName: "magnifyingglass.circle.fill")
+                Image(systemName: "magnifyingglass")
                     .resizable()
+                    .symbolVariant(.circle.fill)
                     .scaledToFit()
                     .frame(width: 36.0, height: 36.0)
             }
@@ -83,8 +85,8 @@ public struct SearchView: View {
                     .containerRelativeFrame(.horizontal) { value, axis in
                         return value * 0.8
                     }
-            } else if let searchMessage = store.searchErrorMessage {
-                Text(searchMessage)
+            } else if store.showNoResultForQueryMessage {
+                Text("We couldn't find any results for\n'\(store.searchQuery)'\n")
                     .multilineTextAlignment(.center)
                     .font(.from(uiFont: .changaOne(24.0)))
                     .foregroundStyle(.primary)

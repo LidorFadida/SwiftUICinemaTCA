@@ -8,6 +8,7 @@
 import Foundation
 import Network
 import TMDBCore
+import Dependencies
 
 public struct DiscoverItemEntity: Equatable, Identifiable {
     public let id: String
@@ -34,6 +35,26 @@ public struct DiscoverItemEntity: Equatable, Identifiable {
         self.releaseDate = releaseDate
         self.backdropPath = backdropPath
         self.posterPath = posterPath
+    }
+    
+    public init(
+        itemIdentifier: Int,
+        title: String,
+        rating: Double,
+        releaseDate: String,
+        backdropPath: URL?,
+        posterPath: URL?
+    ) {
+        @Dependency(\.uuid) var uuid
+        self.init(
+            id: uuid().uuidString,
+            itemIdentifier: itemIdentifier,
+            title: title,
+            rating: rating,
+            releaseDate: releaseDate,
+            backdropPath: backdropPath,
+            posterPath: posterPath
+        )
     }
     
     public init(id: String, response: any TMDBItemResponseProtocol) {

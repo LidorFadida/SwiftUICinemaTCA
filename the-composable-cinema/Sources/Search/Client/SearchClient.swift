@@ -41,31 +41,36 @@ extension SearchClient: DependencyKey {
     
     public static let testValue = Self { searchQuery, page, entertainmentCategory in
         @Dependency(\.uuid) var uuid
-        let discoverEntityFirstItem = DiscoverItemEntity(id: uuid().uuidString,
-                                                         itemIdentifier: 1,
-                                                         title: "Lidor",
-                                                         rating: 0.0,
-                                                         releaseDate: "",
-                                                         backdropPath: nil,
-                                                         posterPath: nil)
-        let discoverEntitySecondItem = DiscoverItemEntity(id: uuid().uuidString,
-                                                          itemIdentifier: 1,
-                                                          title: "Lidor",
-                                                          rating: 0.0,
-                                                          releaseDate: "",
-                                                          backdropPath: nil,
-                                                          posterPath: nil)
+        let discoverEntityFirstItem = withDependencies { container in
+            container.uuid = uuid
+        } operation: {
+            DiscoverItemEntity(itemIdentifier: 1,
+                               title: "Lidor",
+                               rating: 0.0,
+                               releaseDate: "",
+                               backdropPath: nil,
+                               posterPath: nil)
+        }
+        
+        let discoverEntitySecondItem = withDependencies { container in
+            container.uuid = uuid
+        } operation: {
+            DiscoverItemEntity(itemIdentifier: 2,
+                               title: "Lidor",
+                               rating: 0.0,
+                               releaseDate: "",
+                               backdropPath: nil,
+                               posterPath: nil)
+        }
         switch page {
         case 1:
-            return .init(id: uuid().uuidString,
-                         title: "Test",
+            return .init(title: "Test",
                          page: 1,
                          totalPages: 2,
                          entertainmentCategory: .movies(.search),
                          items: [discoverEntityFirstItem])
         case 2:
-            return .init(id: uuid().uuidString,
-                         title: "Test",
+            return .init(title: "Test2",
                          page: 2,
                          totalPages: 2,
                          entertainmentCategory: .movies(.search),

@@ -10,7 +10,6 @@ import TMDBCore
 
 public protocol TMDBClientProtocol {
     func fetchDetails(id: Int, entertainmentCategory: EntertainmentCategory) async throws -> TMDBItemDetailsResponseProtocol
-    func fetchMovies() async throws -> TMDBDiscoverResponse ///should enable selective categories.
-    func fetchTVShows() async throws -> TMDBDiscoverResponse ///should enable selective categories.
+    func fetchDiscover(categories: [EntertainmentCategory]) async throws -> TMDBDiscoverResponse
     func fetchTMDBPage(entertainmentCategory: EntertainmentCategory, parameters: TMDBCoreProperties.Parameters) async throws -> TMDBPageItemResponse
 }

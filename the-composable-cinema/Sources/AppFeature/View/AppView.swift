@@ -34,5 +34,5 @@ public struct AppView: View {
 }
 
 #Preview {
-    AppView(store: Store(initialState: AppFeature.State(), reducer: { AppFeature(apiKey: "")}))
+    AppView(store: Store(initialState: AppFeature.State(), reducer: { AppFeature() }))
 }

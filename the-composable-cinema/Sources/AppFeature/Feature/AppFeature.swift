@@ -14,7 +14,7 @@ import TMDBCore
 @Reducer
 public struct AppFeature {
     
-    public init(apiKey: String?) {
+    public init(apiKey: String? = nil) {
         Resources.configure()
         guard let apiKey else { return }
         TMDBNetwork.shared.configure(apiKey: apiKey, logLevel: .info)
@@ -43,7 +43,7 @@ public struct AppFeature {
         Scope(state: \.moviesTab, action: \.moviesTab) {
             ///'.nowPlaying' is ignored in 'DiscoverMoviesFeature'
             DiscoverFeature(entertainmentCategory: .movies(.nowPlaying))
-        }//theMovieDatabaseClient is a protocol implementing DependencyValue
+        }
         
         Scope(state: \.tvShowsTab, action: \.tvShowsTab) {
             ///'.onTheAir' is ignored in 'DiscoverMoviesFeature'

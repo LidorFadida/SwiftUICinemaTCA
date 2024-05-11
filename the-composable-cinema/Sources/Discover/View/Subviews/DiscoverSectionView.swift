@@ -9,7 +9,6 @@ import SwiftUI
 import Entities
 
 public struct DiscoverSectionView<Row: View, Footer: View>: View {
-    @State private var activeIndex: Int? = nil
     private let paginationEntity: PaginationEntity
     private let rowForIndex: (Int) -> Row
     private let footer: () -> Footer?
